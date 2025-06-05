@@ -1,0 +1,80 @@
+/**
+ * Practica: Cadena fina
+ * Nombre: Sergio Arturo Garcia Ramirez
+ * ID: 00000233316
+ */
+fun main() {
+    
+
+    println("bac".esFina())
+    println("aza".esFina())
+    println("abaca".esFina())
+    println("baaa".esFina())
+    println("aaab".esFina())
+    
+}
+
+
+fun String.esFina(): Boolean{
+    
+    var paso1: Boolean = false
+    var paso2: Boolean = false
+    var paso3: Boolean = false
+    
+    
+    //println(this)
+    // No contiene las siguientes sub cadenas: “bu”, “ba” o “be”
+    if(!(this.contains("ba") || this.contains("bu") || this.contains("be"))){
+        paso1 = true
+    }
+    
+    
+    //Contiene al menos 3 vocales (es posible repetir las vocales)
+    val vocales: String = "aeiuo"
+    var contador: Int = 0
+        
+	for(e in this){
+       if(e.equals('a') || e.equals('e') || e.equals('i') || e.equals('o') || e.equals('u') ){
+          contador++
+       }
+    }
+        
+    if(contador >= 3){
+       paso2 = true
+       }
+       // println("vocales" + contador)
+        
+        
+        
+        
+    //Contiene al menos una letra doble, es decir, la misma letra seguida de sí misma.
+    val longitud : Int = this.length
+  	//println(longitud)
+    var letra : Char 
+    for((e, index) in this.withIndex()){
+       if(e < longitud-1){
+        //println(e)
+        //  println(index + "-" + this.get(e+1))
+           if(index.equals(this.get(e+1))){
+              paso3 = true
+              break
+              }
+           }
+      }
+        
+        
+        
+        
+    
+    
+    if((paso1 && paso2) || (paso1 && paso3) || (paso2 && paso3)){
+       // println("paso1 "+paso1)
+       // println(paso2)
+       // println(paso3)
+        return true
+    }
+    else{
+        return false
+    }
+    
+}
